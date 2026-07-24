@@ -1,1 +1,6 @@
-<h1>ali</h1>
+<?php 
+
+// echo APPROOT;
+echo URLROOT;
+
+?>
