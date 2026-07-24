@@ -6,7 +6,15 @@ class Routing{
 
 
     public function __construct(){
-        $this->GetUrl();
+        $url=$this->GetUrl();
+        if(!empty($url)&& file_exists("../app/controllers/" .ucwords($url[0]).".php")){
+            $this->currentController=ucwords($url[0]);
+
+            unset($url[0]);
+        }
+
+        require_once "../app/controllers/" .$this->currentController .".php" ;
+        $this->currentController=new $this->currentController;
     }
 
     public function GetUrl(){
