@@ -10,9 +10,16 @@ class Routing{
     }
 
     public function GetUrl(){
-        $url = $_GET['url'] ?? '';
+        if(isset($_GET['url'])){
+            $url=rtrim($_GET['url'],'/');
+            $url=filter_var($url,FILTER_SANITIZE_URL);
+            $url=explode('/',$url);
 
-        echo $url;
+            return $url;
+            // var_dump($url);
+        }else{
+            return[];
+        }
     }
 }
 ?>
