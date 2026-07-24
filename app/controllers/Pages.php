@@ -1,9 +1,9 @@
 <?php 
 
-class Edit{
+class Pages{
     public function __construct()
     {
-        echo "edit";
+        echo "pages";
     }
 }
 
