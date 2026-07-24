@@ -22,6 +22,8 @@ class Routing{
                 unset($url[1]);
             }
         }
+        $this->parametr=$url ? array_values($url):[];
+        call_user_func_array([$this->currentController,$this->currentMethod],$this->parametr);
     }
 
     public function GetUrl(){
