@@ -1,6 +1,7 @@
 
-<?php 
+<?php
 require_once "../app/start.php";
 
-$init=new Routing();
+$init=new Routing;
+
 ?>
