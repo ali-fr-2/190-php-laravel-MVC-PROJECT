@@ -1,15 +1,17 @@
 <?php 
 
-class Users extends Controllers {
+class Users extends Controllers{
     public function __construct()
     {
         
     }
     public function register(){
+
         if($_SERVER['REQUEST_METHOD']=="POST"){
 
-        }else{
+        }
 
+        else{
             $data=[
                 'name'=>'',
                 'email'=>'',
@@ -19,11 +21,34 @@ class Users extends Controllers {
                 'email_error'=>'',
                 'password_error'=>'',
                 'confirm_password_error'=>''
+
             ];
 
 
-            // die("die");
+
+
             $this->view("pages/register",$data);
+        }
+    }
+    public function login(){
+
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+
+        }
+
+        else{
+            $data=[
+                'email'=>'',
+                'password'=>'',
+                'email_error'=>'',
+                'password_error'=>'',
+
+            ];
+
+
+
+
+            $this->view("pages/login",$data);
         }
     }
 }

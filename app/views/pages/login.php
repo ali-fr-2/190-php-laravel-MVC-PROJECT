@@ -12,13 +12,7 @@
 
                 <div class="card-body">
 
-                    <form class="needs-validation" novalidate action="<?php echo URLROOT; ?>/users/register" method="post">
-
-                        <div class="form-group">
-                            <label for="name"> name <sup>*</sup> </label>
-                            <input type="text" name="name" class="form-control <?php echo (!empty($data['name_error'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['name'] ?? ''; ?>">
-                            <div class="invalid-feedback"> <?php echo $data['name_error'] ?? '' ?> </div>
-                        </div>
+                    <form action="<?php echo URLROOT; ?>/users/login" method="post">
 
                         <div class="form-group">
                             <label for="email"> email <sup>*</sup> </label>
@@ -32,21 +26,15 @@
                             <span class="invalid-feedback"> <?php echo $data['password_error'] ?? '' ?> </span>
                         </div>
 
-                        <div class="form-group">
-                            <label for="confirm_password"> confirm_password <sup>*</sup> </label>
-                            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($data['confirm_password_error'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['confirm_password'] ?? ''; ?>">
-                            <span class="invalid-feedback"> <?php echo $data['confirm_password_error'] ?? '' ?> </span>
-                        </div>
-
                         <div class="text-center my-4">
-                            <button class="btn btn-dark" type="submit"> sign up </button>
+                            <button class="btn btn-dark" type="submit"> log in </button>
                         </div>
 
                         <div class="text-center my-4">
                             <p>
                                 ‌Welcome to ChatGPT
-                                Log in with your OpenAI account to continue
-                                <a href="<?php echo URLROOT; ?>/pages/login" class="text-muted"> log in </a>
+                                Log in with your OpenAI account to continue‌
+                                <a href="<?php echo URLROOT; ?>/pages/register" class="text-muted"> register </a>
                             </p>
                         </div>
 
