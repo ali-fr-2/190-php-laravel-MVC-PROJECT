@@ -37,10 +37,12 @@ class Database{
         return $this->stmt->execute();
     }
     public function fetchAll(){
+        // $this->stmt->execute();
         $this->execute();
         return $this->stmt->fetchAll();
     }
     public function fetch(){
+        // $this->stmt->execute();
         $this->execute();
         return $this->stmt->fetch();
     }

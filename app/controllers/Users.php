@@ -64,6 +64,27 @@ class Users extends Controllers
     {
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            $data = [
+                'email' => $_POST['email'],
+                'password' => $_POST['password'],
+                'email_error' => '',
+                'password_error' => ''
+            ];
+            if (empty($data['email'])) {
+                $data['email_error'] = "enter your email";
+            }
+            if (empty($data['password'])) {
+                $data['password_error'] = "enter your password";
+            }
+            if (
+                empty($data['email_error']) &&
+                empty($data['password_error']) 
+            ) {
+                die("hello");
+            } else {
+                $this->view("pages/login", $data);
+            }
         } else {
             $data = [
                 'email' => '',
