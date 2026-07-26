@@ -101,7 +101,7 @@ class Users extends Controllers
             ) {
                 $loggedInUser = $this->userModel->login($data);
                 if ($loggedInUser) {
-                    header("location:https://github.com/ali-fr-2/190-php-laravel-MVC-PROJECT");
+                    $this->createUserSession($loggedInUser);
                 } else {
                     $data['email_error'] = "password or email is incorrect";
                     $this->view("pages/login", $data);
@@ -123,5 +123,19 @@ class Users extends Controllers
 
             $this->view("pages/login", $data);
         }
+    }
+    public function createUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_name'] = $user->name;
+        header("location:https://github.com/ali-fr-2/190-php-laravel-MVC-PROJECT");
+    }
+    public function logout()
+    {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_email']);
+        unset($_SESSION['user_name']);
+        session_destroy();
     }
 }
