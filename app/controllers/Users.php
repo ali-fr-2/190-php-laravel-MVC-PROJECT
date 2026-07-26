@@ -47,10 +47,10 @@ class Users extends Controllers
                 empty($data['password_error']) &&
                 empty($data['confirm_password_error'])
             ) {
-                $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
-                if($this->userModel->register($data)){
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                if ($this->userModel->register($data)) {
                     header("location:https://github.com/ali-fr-2/190-php-laravel-MVC-PROJECT");
-                }else{
+                } else {
                     die("error");
                 }
             } else {
@@ -88,6 +88,9 @@ class Users extends Controllers
             ];
             if (empty($data['email'])) {
                 $data['email_error'] = "enter your email";
+            } elseif ($this->userModel->findUserByEmail($data['email'])) {
+            } else {
+                $data['email_error'] = "user not found";
             }
             if (empty($data['password'])) {
                 $data['password_error'] = "enter your password";
@@ -96,7 +99,13 @@ class Users extends Controllers
                 empty($data['email_error']) &&
                 empty($data['password_error'])
             ) {
-                die("hello");
+                $loggedInUser = $this->userModel->login($data);
+                if ($loggedInUser) {
+                    header("location:https://github.com/ali-fr-2/190-php-laravel-MVC-PROJECT");
+                } else {
+                    $data['email_error'] = "password or email is incorrect";
+                    $this->view("pages/login", $data);
+                }
             } else {
                 $this->view("pages/login", $data);
             }

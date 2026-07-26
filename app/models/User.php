@@ -17,7 +17,6 @@ class User{
             return false;
         }
     }
-
     public function register($data){
         $this->db->query("INSERT INTO users (name , email , password) VALUES (:name , :email , :password)");
         $this->db->bind(":name",$data['name']);
@@ -29,6 +28,18 @@ class User{
         }else{
             return false;
         }
+    }
+    public function login($data){
+        $this->db->query("SELECT * FROM users WHERE email = :email");
+        $this->db->bind(":email",$data['email']);
+        $row=$this->db->fetch();
+        $hash_password=$row->password;
+        if(password_verify($data['password'],$hash_password)){
+            return $row;
+        }else{
+            return false;
+        }
+  
     }
 }
 
