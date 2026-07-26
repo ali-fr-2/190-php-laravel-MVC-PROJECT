@@ -47,7 +47,12 @@ class Users extends Controllers
                 empty($data['password_error']) &&
                 empty($data['confirm_password_error'])
             ) {
-                die("hello");
+                $data['password']=password_hash($data['password'],PASSWORD_DEFAULT);
+                if($this->userModel->register($data)){
+                    header("location:https://github.com/ali-fr-2/190-php-laravel-MVC-PROJECT");
+                }else{
+                    die("error");
+                }
             } else {
                 $this->view("pages/register", $data);
             }
