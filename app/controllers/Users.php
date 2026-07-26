@@ -2,7 +2,11 @@
 
 class Users extends Controllers
 {
-    public function __construct() {}
+    public $userModel;
+    public function __construct()
+    {
+        $this->userModel = $this->model('User');
+    }
     public function register()
     {
 
@@ -22,9 +26,15 @@ class Users extends Controllers
             }
             if (empty($data['email'])) {
                 $data['email_error'] = "enter your email";
+            } else {
+                if ($this->userModel->findUserByEmail($data['email'])) {
+                    $data['email_error'] = "email is repeted";
+                }
             }
             if (empty($data['password'])) {
                 $data['password_error'] = "enter your password";
+            } elseif (strlen($data['password']) < 6) {
+                $data['password_error'] = "password must be at least 6";
             }
             if (empty($data['confirm_password'])) {
                 $data['confirm_password_error'] = 'enter the repeat of your password';
@@ -79,7 +89,7 @@ class Users extends Controllers
             }
             if (
                 empty($data['email_error']) &&
-                empty($data['password_error']) 
+                empty($data['password_error'])
             ) {
                 die("hello");
             } else {
